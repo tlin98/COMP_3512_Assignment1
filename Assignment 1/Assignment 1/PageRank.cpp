@@ -22,6 +22,7 @@ int main() {
 	}
 	printMatrix(matrix);
 
+	std::cout << std::endl << "Convert to stochastic matrix" << std::endl;
 	// Divide the values in the column by the sum of the column. 
 	// Generate "importance" and tranform matrix to "stochastic"
 	for (int x = 0; x < dimension; ++x) {
@@ -52,7 +53,7 @@ int main() {
 			transition.at(y).push_back((matrix.at(y).at(x) * P) + (1.0 - P) * Q);
 		}
 	}
-	std::cout << "transition" << std::endl;
+	std::cout << std::endl << "transition" << std::endl;
 	printMatrix(transition);
 
 	// Setup rank
@@ -65,18 +66,22 @@ int main() {
 	
 	// Matrix multiplication
 	double min = 1;
-	while (min > D) {
+	for (size_t i = 0; min > D; ++i) {
 		std::vector<std::vector<double>> prev(rank);
-		std::cout << "Matrix Multiplication" << std::endl;
+		std::cout << std::endl <<  "Matrix Multiplication " << i << std::endl;
 		matrixMultiplication(transition, rank);
 		printMatrix(rank);
 		for (size_t i = 0; i < rank.size(); ++i) {
 			min = std::min(std::abs(prev.at(i).at(0) - rank.at(i).at(0)), min);
 		}
-		std::cout << min << std::endl;
 	}
 
-	// 
+	// Ranking
+	for (int i = 0; i < rank.size(); ++i) {
+		rank.at(i).at(0) = rank.at(i).at(0) / dimension;
+	}
+	std::cout << std::endl << "Ranking of each page" << std::endl;
+	printMatrix(rank);
 
 	system("pause");
 
