@@ -64,9 +64,19 @@ int main() {
 	
 	
 	// Matrix multiplication
-	std::cout << "Matrix Multiplication" << std::endl;
-	matrixMultiplication(transition, rank);
-	printMatrix(rank);
+	double min = 1;
+	while (min > D) {
+		std::vector<std::vector<double>> prev(rank);
+		std::cout << "Matrix Multiplication" << std::endl;
+		matrixMultiplication(transition, rank);
+		printMatrix(rank);
+		for (size_t i = 0; i < rank.size(); ++i) {
+			min = std::min(std::abs(prev.at(i).at(0) - rank.at(i).at(0)), min);
+		}
+		std::cout << min << std::endl;
+	}
+
+	// 
 
 	system("pause");
 
