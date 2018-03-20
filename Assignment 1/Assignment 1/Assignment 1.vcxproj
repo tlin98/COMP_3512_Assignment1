@@ -120,6 +120,9 @@
   <ItemGroup>
     <ClCompile Include="PageRank.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\x64\Release\test.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
