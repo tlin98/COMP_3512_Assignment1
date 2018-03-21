@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
-#include <array>
+#include <cmath>
+#include <algorithm>
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdlib.h>
+
 
 // Random Walk
 const static double P = 0.85;

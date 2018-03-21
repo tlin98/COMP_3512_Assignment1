@@ -1,7 +1,7 @@
 #include "PageRank.h"
 
 int main() {
-	std::string filename = "test.txt";
+	std::string filename = "connectivity.txt";
 	std::ifstream input_file(filename);
 	std::vector<int> input;
 	int temp = 0, size = 0;
@@ -9,7 +9,7 @@ int main() {
 		input.push_back(temp);
 		++size;
 	}
-	int dimension = size / 4;
+	int dimension = sqrt(size);
 
 	// Add the values read from filename to 2D vector array matrix
 	std::vector<std::vector<double>> matrix;
@@ -72,18 +72,19 @@ int main() {
 		matrixMultiplication(transition, rank);
 		printMatrix(rank);
 		for (size_t i = 0; i < rank.size(); ++i) {
-			min = std::min(std::abs(prev.at(i).at(0) - rank.at(i).at(0)), min);
+			double difference = std::abs(prev.at(i).at(0) - rank.at(i).at(0));
+			min = std::min(difference, min);
 		}
 	}
 
 	// Ranking
-	for (int i = 0; i < rank.size(); ++i) {
+	for (size_t i = 0; i < rank.size(); ++i) {
 		rank.at(i).at(0) = rank.at(i).at(0) / dimension;
 	}
 	std::cout << std::endl << "Ranking of each page" << std::endl;
-	printMatrix(rank);
-
-	system("pause");
+	for (size_t i = 0; i < rank.size(); ++i) {
+		std::cout << (char)(65 + i) << " = " << rank.at(i).at(0) << std::endl;
+	}
 
 	return 0;
 	
