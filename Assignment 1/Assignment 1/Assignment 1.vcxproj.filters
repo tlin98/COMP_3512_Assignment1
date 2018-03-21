@@ -25,7 +25,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\x64\Release\test.txt">
+    <Text Include="..\x64\Release\connectivity.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

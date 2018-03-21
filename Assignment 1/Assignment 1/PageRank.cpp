@@ -86,6 +86,8 @@ int main() {
 		std::cout << (char)(65 + i) << " = " << rank.at(i).at(0) << std::endl;
 	}
 
+	system("pause");
+
 	return 0;
 	
 }
